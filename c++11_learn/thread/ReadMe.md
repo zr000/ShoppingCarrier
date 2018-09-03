@@ -29,4 +29,10 @@ yield()函数可以释放cpu资源，让其他线程有机会执行，相当于s
 
 ## 线程同步
 > mutex
+一个mutex对象表示对资源的互斥访问，如果线程去获取一个已经被获取的mutex，线程会阻塞
+> recursive_mutex，可以在同一个线程中重复获取的互斥量
+> timed_mutex，在指定时长内尝试获互斥量，相当于WaitforSingleObject里的timeout
+> recursive_timed_mutex
 
+> lock_guard&lt;M&gt;，mutex的守卫模板，可以自动枷锁解锁
+> unique_lock&lt;M&gt;
