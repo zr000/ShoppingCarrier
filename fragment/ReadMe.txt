@@ -1,1 +1,5 @@
-iteratorFile.cpp------>模仿python的os.walk实现的目录遍历类
+﻿charactors
+	- stringToWstring(c++11)
+	- wstringToString(c++11)		
+network
+	- string_to_sockaddr								

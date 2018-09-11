@@ -1,1 +1,6 @@
 https://stackoverflow.com/questions/13425106/createprocess-succeeds-but-getexitcodeprocess-returns-c0000142
+https://blogs.msdn.microsoft.com/winsdk/2015/06/03/what-is-up-with-the-application-failed-to-initialize-properly-0xc0000142-error/
+https://blogs.msdn.microsoft.com/ntdebugging/2007/01/04/desktop-heap-overview/
+https://blogs.technet.microsoft.com/askperf/2007/07/24/sessions-desktops-and-windows-stations/
+
+https://www.cnblogs.com/findumars/p/5786034.html
