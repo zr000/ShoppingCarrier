@@ -58,14 +58,15 @@ private:
             }
 
             if (followlinks && S_ISLNK(dirinfo->d_type)) {
-                char buf[1024] = {0};
-                readlink(currPath.c_str(), buf, 1024);
+				vector<char> buf;
+				buf.assign(1024, '\0');
+                readlink(currPath.c_str(), buf.data(), buf.size());
                 struct stat* st;
-                if (0 == lstat(buf, st)) {
+                if (0 == lstat(buf.date(), st)) {
                     if (S_ISDIR(st->st_mode))
-                        childFolder.push_back(buf);
+                        childFolder.push_back(buf.data());
                     else if (S_ISREG(st->st_mode))
-                        childFiles.push_back(buf);
+                        childFiles.push_back(buf.data());
                 }
             }
 
@@ -79,8 +80,7 @@ private:
     tuple<string, list<string>, list<string> > walk(bool followlinks = false) 
     {
         string folder;
-        if (m_pathQueue.size() > 0)
-        {
+        if (m_pathQueue.size() > 0)	{
             folder = m_pathQueue.front();
         }
 
@@ -101,11 +101,12 @@ int main(int argc, char** argv)
         return 1;
     
     string exe_path;
-    {
-    char buf[1024];
-    readlink("/proc/self/exe", buf, 1024);
-    *(strrchr(buf, '/') + 1) = 0;
-    exe_path = buf;
+	{
+    vector<char> buf;
+	buf.assign(1024, '\0');
+    readlink("/proc/self/exe", buf.data(), 1024);
+    *(strrchr(buf.data(), '/') + 1) = 0;
+    exe_path = buf.data();
     }
 
 
