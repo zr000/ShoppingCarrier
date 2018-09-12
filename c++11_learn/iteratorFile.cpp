@@ -10,11 +10,12 @@
 #include <queue>
 
 #include <tuple>
-
+//https://www.codeproject.com/Articles/29524/Generators-in-C
 
 using namespace std;
 
-class CTraversalPath : public std::iterator<std::forward_iterator_tag,CTraversalPath> {
+class CTraversalPath : public std::iterator<std::forward_iterator_tag,CTraversalPath> 
+{
 public:
     CTraversalPath(const string& folder)
     {
@@ -62,7 +63,7 @@ private:
 				buf.assign(1024, '\0');
                 readlink(currPath.c_str(), buf.data(), buf.size());
                 struct stat* st;
-                if (0 == lstat(buf.date(), st)) {
+                if (0 == lstat(buf.data(), st)) {
                     if (S_ISDIR(st->st_mode))
                         childFolder.push_back(buf.data());
                     else if (S_ISREG(st->st_mode))
@@ -95,20 +96,47 @@ private:
     queue<string> m_pathQueue;
 };
 
+#include "generator.h"
+
+$generator(descent)
+{
+	// place for all variables used in the generator
+	int i; // our counter
+
+		   // place the constructor of our generator, e.g. 
+		   // descent(int minv, int maxv) {...}
+
+		   // from $emit to $stop is a body of our generator:
+
+	$emit(int) // will emit int values. Start of body of the generator.
+		for (i = 10; i > 0; --i)
+			$yield(i); // a.k.a. yield in Python,
+					   // returns next number in [1..10], reversed.
+	$stop; // stop, end of sequence. End of body of the generator.
+};
+
 int main(int argc, char** argv)
 {
-    if (argc < 2)
-        return 1;
-    
-    string exe_path;
-	{
-    vector<char> buf;
-	buf.assign(1024, '\0');
-    readlink("/proc/self/exe", buf.data(), 1024);
-    *(strrchr(buf.data(), '/') + 1) = 0;
-    exe_path = buf.data();
-    }
+	//if (argc < 2) {
+	//	cout << "2 param need" << endl;
+	//	exit(1);
+	//}
+ //   
+ //   string exe_path;
+	//{
+ //   vector<char> buf;
+	//buf.assign(1024, '\0');
+ //   readlink("/proc/self/exe", buf.data(), 1024);
+ //   *(strrchr(buf.data(), '/') + 1) = 0;
+ //   exe_path = buf.data();
+ //   }
+	//
+	//cout << exe_path.c_str() << endl;
 
+	descent gen;
+	for (int n; gen(n);) // "get next" generator invocation
+		printf("next number is %d\n", n);
+	return 0;
 
     return 0;
 }
