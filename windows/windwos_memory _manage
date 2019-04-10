@@ -1,0 +1,3 @@
+测试
+  使用new，malloc，HeapAlloc，VirtualAlloc，unique_ptr对内存集，提交大小的影响
+  
