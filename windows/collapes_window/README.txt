@@ -1,0 +1,1 @@
+用mfc实现的collapes window，csdn下载数过百!o_o，一个程序撑起csdn积分，现搬迁到github
