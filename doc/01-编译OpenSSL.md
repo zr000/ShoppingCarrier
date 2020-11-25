@@ -28,3 +28,5 @@
 ## 0x02 编译
 执行nmake开始编译，大约10分钟后编译完成
 
+## 0x03 使用 
+在解压目录中创建*lib*文件夹，把编译好的*libcrypto.lib*和*libssl.lib*复制到*lib*文件夹中，编译curl时，指定SSL_PATH时，会在SSL_PATH/lib目录中查找openssl的lib文件
